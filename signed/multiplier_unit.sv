@@ -28,7 +28,7 @@ module multiplier_unit_signed (
         endcase
     end
 
-    always_ff @(posedge clock, negedge resest_active_low) begin
+    always_ff @(posedge clock, negedge reset_active_low) begin
         if (!reset_active_low) begin
             busy <= 1'b0;
 			done <= 1'b0;

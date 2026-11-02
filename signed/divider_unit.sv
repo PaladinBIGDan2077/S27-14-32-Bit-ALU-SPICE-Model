@@ -45,7 +45,7 @@ module divider_unit_signed
     endfunction
 
     always_ff @(posedge clock, negedge reset_active_low) begin
-        if (!rst_n) begin
+        if (!reset_active_low) begin
             state <= S_IDLE; 
 			busy <= 1'b0; 
 			done <= 1'b0;
@@ -66,14 +66,14 @@ module divider_unit_signed
             unique case (state)
                 S_IDLE: begin
 					if (start) begin
-						D <= abs32(divisor);
-						Q <= abs32(dividend);
+						D <= abs32(vector_b);
+						Q <= abs32(vector_a);
 						R <= '0;
 						count <= '0;
-						neg_q <= dividend[31] ^ divisor[31];
-						neg_r <= dividend[31];
-						dbz <= (divisor == 32'sd0);
-						dividend_q <= dividend;
+						neg_q <= vector_a[31] ^ vector_b[31];
+						neg_r <= vector_a[31];
+						dbz <= (vector_b == 32'sd0);
+						dividend_q <= vector_a;
 						busy <= 1'b1;
 						state <= S_RUN;
 					end
