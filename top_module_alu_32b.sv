@@ -1,10 +1,7 @@
-// ALU type select (compile-time):
-//   - Signed ALU  : uncomment the define below, or pass -DALU_SIGNED to the tool
-//                   (Quartus: Assignments > Settings > Compiler Settings > Verilog HDL Input > Verilog macros, ALU_SIGNED)
-//   - Unsigned ALU: leave it commented out (default)
+// ALU type select: edit alu_cfg.svh (ALU_SIGNED / ALU_UNSIGNED), or pass +define+ALU_SIGNED / +define+ALU_UNSIGNED.
 // Only the selected ALU is instantiated; the other one's files can stay in the project.
-//`define ALU_SIGNED
 `include "alu_cfg.svh"
+
 module top_module_alu_32b
 (
 	input 			[31:0]			vector_a, vector_b,
